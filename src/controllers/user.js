@@ -35,9 +35,8 @@ ctrl.update = async (req,res) => {
             user.cars = body.cars,
             user.Status = body.Status
          }
-
-         await user.save();
-         res.status(200).json();
+         const userSave = await user.save();
+         res.status(200).json(user);
    })
 }
 
