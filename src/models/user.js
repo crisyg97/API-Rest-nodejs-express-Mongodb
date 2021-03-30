@@ -1,16 +1,15 @@
-const mongoose = require('moongoose');
-const Shema = mongoose.Shema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const userShema = new Shema({
-    dni: String,
+const userSchema = new Schema({
     firstName: String,
-    lastNmae: String,
+    lastName: String,
+    dni: String,
     mail: String,
     cars: [{
-        type: Shemma.types.ObjectId,
-        ref: car
+        carId: {type: Schema.Types.ObjectId, ref: 'car'}
     }],
     Status: {type: String, enum: ['ACTIVE','INACTIVE'], required: true}
 });
 
-module.exports = moongose.model('user', userShema);
+module.exports = mongoose.model('user', userSchema);
