@@ -1,12 +1,16 @@
 const User = require('../models/user');
 const ctrl = {};
 
-ctrl.index = async (req, res) => {
-   const users = await User.find().populate('car'); 
-   res.status(200).json(users);
+ctrl.index = (req, res) => {
+   User.find((err, client) => {
+      if (err) {console.log(err)}
+      res.send({
+          client: client
+      });
+   }).populate('car');
 };
 
-ctrl.create = async (req, res) => {
+ctrl.create = (req, res) => {
    const body = req.body;
    const user = new User({
       firstName: body.firstName,
@@ -16,11 +20,15 @@ ctrl.create = async (req, res) => {
       cars: body.cars,
       Status: 'ACTIVE'
    });
-   await user.save();
-   res.status(200).json(user);
+   User.save((err) => {
+      if(err) {console.log(err)}
+      res.send({
+          success: true
+      })
+   });
 }
 
-ctrl.update = async (req,res) => {
+ctrl.update = (req,res) => {
    const id = req.params.user_id;
    const body = req.body;
    User.findOne({_id:id}, (err,user) => {
@@ -35,12 +43,12 @@ ctrl.update = async (req,res) => {
             user.cars = body.cars,
             user.Status = body.Status
          }
-         const userSave = await user.save();
-         res.status(200).json(user);
+         user.save();
+         res.status(200).json(userSave);
    })
 }
 
-ctrl.remove = async (req, res) => {
+ctrl.remove = (req, res) => {
    const id = req.params.user_id;
    const body = req.body;
    User.findOne( {_id: id}, (err,user) => {
@@ -49,9 +57,14 @@ ctrl.remove = async (req, res) => {
          if(!user) {console.log('user not found')}
          else {
             user.Status = 'INACTIVE';
+      
+            save((err) => {
+               if(err) {console.log(err)}
+               res.send({
+                  success: true
+               })
+            });
          }
-         await user.save();
-         res.status(200).json();
    });
 }
 module.exports = ctrl;
