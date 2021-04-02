@@ -9,7 +9,7 @@ const carSchema = new Schema ({
     transmission: String,
     origin: String,
     year: String,
-    Status: {type: String, enum: ['ACTIVE','INACTIVE'], required: true}
+    status: {type: String, enum: ['ACTIVE','INACTIVE'], required: true}
 });
 
 module.exports = moongose.model('user', carSchema);

@@ -43,8 +43,12 @@ ctrl.update = (req,res) => {
             user.cars = body.cars,
             user.Status = body.Status
          }
-         user.save();
-         res.status(200).json(userSave);
+         user.save((err) => {
+                if(err) {console.log(err)}
+                res.send({
+                    success: true
+                })
+         });
    })
 }
 
