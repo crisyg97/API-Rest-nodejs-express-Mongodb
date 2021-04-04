@@ -2,10 +2,11 @@ const User = require('../models/user');
 const ctrl = {};
 
 ctrl.index = (req, res) => {
-   User.find((err, client) => {
+   User.find((err, user) => {
       if (err) {console.log(err)}
+      console.log(user);
       res.send({
-          client: client
+         user: user
       });
    }).populate('car');
 };
