@@ -2,17 +2,18 @@ const User = require('../models/user');
 const ctrl = {};
 
 ctrl.index = (req, res) => {
-   User.find((err, user) => {
+   User.find((err, userDb) => {
       if (err) {console.log(err)}
-      console.log(user);
+      console.log(userDb);
       res.send({
-         user: user
+         user: userDb
       });
    }).populate('car');
 };
 
 ctrl.create = (req, res) => {
    const body = req.body;
+   console.log(body);
    const user = new User({
       firstName: body.firstName,
       lastName: body.lastName,

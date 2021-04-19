@@ -1,10 +1,12 @@
 const express = require('express');
 const config = require('./config');
-const app = config(express());
+
+
+const index = require('./routes/index');
 
 //connetion mongodb
-const mongooseConnect = require('./mongoDbConnect');
-const db = mongooseConnect.connect();
+const mongodb_conn_module = require('./mongodbConnect');
+var db = mongodb_conn_module.connect();
 
 app.listen(app.get('port'), () => {
     console.log('server on port', app.get('port'));

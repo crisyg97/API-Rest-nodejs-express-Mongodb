@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Shema;
+const Schema = mongoose.Schema;
 
-const carSchema = new Schema ({
+var carSchema = new Schema ({
     brand: String,
     model: String,
     fuel: String,
@@ -12,4 +12,4 @@ const carSchema = new Schema ({
     status: {type: String, enum: ['ACTIVE','INACTIVE'], required: true}
 });
 
-module.exports = moongose.model('user', carSchema);
+module.exports = mongoose.model('car', carSchema);
