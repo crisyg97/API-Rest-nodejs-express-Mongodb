@@ -75,3 +75,5 @@ ctrl.remove = (req, res) => {
            }
      });
 }
+
+module.exports = ctrl;

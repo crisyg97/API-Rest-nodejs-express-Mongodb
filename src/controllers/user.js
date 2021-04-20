@@ -1,8 +1,8 @@
-const User = require('../models/user');
+const modelUser = require('../models/user');
 const ctrl = {};
 
 ctrl.index = (req, res) => {
-   User.find((err, userDb) => {
+   modelUser.find((err, userDb) => {
       if (err) {console.log(err)}
       console.log(userDb);
       res.send({
@@ -11,10 +11,10 @@ ctrl.index = (req, res) => {
    }).populate('car');
 };
 
-ctrl.create = (req, res) => {
+ctrl.create =  (req, res) => {
    const body = req.body;
    console.log(body);
-   const user = new User({
+   const user = new modelUser({
       firstName: body.firstName,
       lastName: body.lastName,
       dni: body.dni,
@@ -22,7 +22,7 @@ ctrl.create = (req, res) => {
       cars: body.cars,
       Status: 'ACTIVE'
    });
-   User.save((err) => {
+   user.save((err) => {
       if(err) {console.log(err)}
       res.send({
           success: true

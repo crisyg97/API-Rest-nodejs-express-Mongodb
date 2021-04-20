@@ -1,12 +1,37 @@
 const express = require('express');
-const config = require('./config');
+const morgan = require('morgan');
+const app = express();
+
+//port
+app.set('port', process.env.PORT || 3000);
 
 
-const index = require('./routes/index');
+
+//middleware
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
+app.use(morgan('dev'));
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+
+//routes
+const user = require('./routes/user');
+const car = require('./routes/car');
+app.use(user);
+app.use(car);
 
 //connetion mongodb
 const mongodb_conn_module = require('./mongodbConnect');
 var db = mongodb_conn_module.connect();
+
+app.use('/', (req,res) => {
+    res.json('API-Rest');
+})
 
 app.listen(app.get('port'), () => {
     console.log('server on port', app.get('port'));
