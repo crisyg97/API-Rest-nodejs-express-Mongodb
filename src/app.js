@@ -1,11 +1,10 @@
 const express = require('express');
+const path = require("path");
 const morgan = require('morgan');
 const app = express();
 
 //port
 app.set('port', process.env.PORT || 3000);
-
-
 
 //middleware
 app.use((req, res, next) => {
@@ -16,23 +15,28 @@ app.use((req, res, next) => {
     next();
 });
 app.use(morgan('dev'));
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
 
 //routes
 const user = require('./routes/user');
 const car = require('./routes/car');
-app.use(user);
-app.use(car);
+/*app.use('/', (req,res) => {
+    res.json('API-Rest');
+});*/
+app.use('/user',user);
+app.use('/car',car);
+
 
 //connetion mongodb
 const mongodb_conn_module = require('./mongodbConnect');
-var db = mongodb_conn_module.connect();
+var db = mongodb_conn_module.connect()
+    .then(() => {
+        app.listen(app.get('port'), () => {
+            console.log('server on port', app.get('port'));
+        });
+    });   
 
-app.use('/', (req,res) => {
-    res.json('API-Rest');
-})
 
-app.listen(app.get('port'), () => {
-    console.log('server on port', app.get('port'));
-});
+

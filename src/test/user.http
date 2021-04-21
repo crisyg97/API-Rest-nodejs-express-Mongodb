@@ -8,8 +8,7 @@ content-type: application/json
     "lastName" : "cristian",
     "dni": "40861016",
     "mail": "cristianyoel@gmail.com",
-    "cars": "",
-    "status": "ACTIVE" 
+    "cars": []
 }
 ###
 PUT http://localhost:3000/user/:/update HTTP/1.1

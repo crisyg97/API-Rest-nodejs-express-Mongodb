@@ -49,7 +49,7 @@ ctrl.update = (req,res) => {
                 if(err) {console.log(err)}
                 res.send({
                     success: true
-                })
+                });
          });
    })
 }

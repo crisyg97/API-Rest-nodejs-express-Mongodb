@@ -1,0 +1,16 @@
+GET http://localhost:3000/car
+###
+POST http://localhost:3000/user/add HTTP/1.1
+content-type: application/json
+
+{
+    "brand": "Ford",
+    "model": "F-150",
+    "fuel": "nafta",
+    "category": "4x4",
+    "transmission": "Auto",
+    "origin": "EE.UU",
+    "year": "2020"
+}
+
+###

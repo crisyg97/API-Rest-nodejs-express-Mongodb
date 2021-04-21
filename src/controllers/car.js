@@ -1,8 +1,8 @@
-const Car = require('../models/car');
+const modelCar = require('../models/car');
 const ctrl = {};
 
 ctrl.index = (req, res) => {
-    Car.find((err,car) => {
+    modelCar.find((err,car) => {
         if(err) {console.log(err)}
         res.send({
             car : car
@@ -10,9 +10,10 @@ ctrl.index = (req, res) => {
     })
 }
 
-ctrl.create = (req, res) => {
+ctrl.create = (req, res, next) => {
+    console.log(req.body);
     const body = req.body;
-    const car = new Car({
+    const car = new modelCar({
         brand: body.brand,
         model: body.model,
         fuel: body.fuel,
@@ -21,19 +22,19 @@ ctrl.create = (req, res) => {
         origin: body.origin,
         year: body.year,
         status: 'ACTIVE'
-    })
-    Car.save((err) => {
+    });
+    car.save((err) => {
         if(err) {console.log(err)}
         res.send({
             success: true
-        })
+        });
     });
 }
 
 ctrl.update = (req, res) => {
     const id = req.params.car_id;
     const body = req.body;
-    Car.findOne( {_id: id}, (err, car) => {
+    modelCar.findOne( {_id: id}, (err, car) => {
         if(err) {console.log(err)}
         else
             if(!car) {console.log('car not found')}
@@ -47,7 +48,7 @@ ctrl.update = (req, res) => {
                 car.year = body.year,
                 car.status = body.status
             }
-            user.save((err) => {
+            modelCar.save((err) => {
                 if(err) {console.log(err)}
                 res.send({
                     success: true
@@ -59,14 +60,14 @@ ctrl.update = (req, res) => {
 ctrl.remove = (req, res) => {
     const id = req.params.car_id;
     const body = req.body;
-    Car.findOne( {_id: id}, (err,car) => {
+    modelCar.findOne( {_id: id}, (err,car) => {
         if(err) {console.log(err)}
         else
            if(!user) {console.log('car not found')}
            else {
               car.status = 'INACTIVE';
         
-              save((err) => {
+              modelCar.save((err) => {
                  if(err) {console.log(err)}
                  res.send({
                     success: true
