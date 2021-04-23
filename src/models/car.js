@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 var carSchema = new Schema ({
-    brand: {type: String, require: true},
-    model: {type: String, require: true},
+    brand: String,
+    model: String,
     fuel: String,
     category: String,
     transmission: String,
     origin: String,
     year: String,
-    status: {type: String, enum: ['ACTIVE','INACTIVE'], require: true}
+    status: {type: String, enum: ['ACTIVE','INACTIVE'], default: 'ACTIVE'}
 });
 
 module.exports = mongoose.model('car', carSchema);

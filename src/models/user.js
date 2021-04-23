@@ -9,7 +9,7 @@ var userSchema = new Schema ({
     cars: [{
         carId: {type: Schema.Types.ObjectId, ref: 'car'}
     }],
-    status: {type: String, enum: ['ACTIVE','INACTIVE'], required: true}
+    status: {type: String, enum: ['ACTIVE','INACTIVE'], default: 'ACTIVE'}
 });
 
 module.exports = mongoose.model('user', userSchema);

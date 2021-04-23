@@ -11,15 +11,32 @@ content-type: application/json
     "cars": []
 }
 ###
-PUT http://localhost:3000/user/:/update HTTP/1.1
+PUT http://localhost:3000/user/60819787f4a8501334fc1d47/update HTTP/1.1
 content-type: application/json
 
 {
-
+    "firstName": "cristian",
+    "lastName" : "yoel",
+    "dni": "40861016",
+    "mail": "cristianyoel@gmail.com",
+    "cars": [
+        {
+        "status": "INACTIVE",
+        "_id": "608348c62189a30a8c75a6ec",
+        "brand": "Ford",
+        "model": "F-150",
+        "fuel": "gasoil",
+        "category": "4x4",
+        "transmission": "Auto",
+        "origin": "EE.UU",
+        "year": "2005",
+        "__v": 0
+        }
+    ]
 }
 
 ###
-DELETE http://localhost:3000/user/:/delete HTTP/1.1
+DELETE http://localhost:3000/user/60819787f4a8501334fc1d47/delete HTTP/1.1
 content-type: application/json
 
 {

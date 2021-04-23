@@ -34,6 +34,7 @@ ctrl.create = (req, res, next) => {
 ctrl.update = (req, res) => {
     const id = req.params.car_id;
     const body = req.body;
+    console.log(body);
     modelCar.findOne( {_id: id}, (err, car) => {
         if(err) {console.log(err)}
         else
@@ -48,7 +49,7 @@ ctrl.update = (req, res) => {
                 car.year = body.year,
                 car.status = body.status
             }
-            modelCar.save((err) => {
+            car.save((err) => {
                 if(err) {console.log(err)}
                 res.send({
                     success: true
@@ -63,11 +64,11 @@ ctrl.remove = (req, res) => {
     modelCar.findOne( {_id: id}, (err,car) => {
         if(err) {console.log(err)}
         else
-           if(!user) {console.log('car not found')}
+           if(!car) {console.log('car not found')}
            else {
               car.status = 'INACTIVE';
         
-              modelCar.save((err) => {
+              car.save((err) => {
                  if(err) {console.log(err)}
                  res.send({
                     success: true

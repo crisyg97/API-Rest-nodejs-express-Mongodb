@@ -1,6 +1,6 @@
 GET http://localhost:3000/car
 ###
-POST http://localhost:3000/user/add HTTP/1.1
+POST http://localhost:3000/car/add HTTP/1.1
 content-type: application/json
 
 {
@@ -14,3 +14,23 @@ content-type: application/json
 }
 
 ###
+PUT http://localhost:3000/car/608348c62189a30a8c75a6ec/update HTTP/1.1
+content-type: application/json
+
+{
+    "brand": "Ford",
+    "model": "F-150",
+    "fuel": "gasoil",
+    "category": "4x4",
+    "transmission": "Auto",
+    "origin": "EE.UU",
+    "year": "2005"
+}
+###
+
+DELETE http://localhost:3000/car/608348c62189a30a8c75a6ec/delete HTTP/1.1
+content-type: application/json
+
+{
+
+}

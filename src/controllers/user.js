@@ -20,7 +20,7 @@ ctrl.create =  (req, res) => {
       dni: body.dni,
       mail: body.mail,
       cars: body.cars,
-      Status: 'ACTIVE'
+      status: 'ACTIVE'
    });
    user.save((err) => {
       if(err) {console.log(err)}
@@ -33,7 +33,7 @@ ctrl.create =  (req, res) => {
 ctrl.update = (req,res) => {
    const id = req.params.user_id;
    const body = req.body;
-   User.findOne({_id:id}, (err,user) => {
+   modelUser.findOne({_id:id}, (err,user) => {
       if(err) {console.log(err)}
       else
          if(!user) {console.log('user not found')}
@@ -57,18 +57,18 @@ ctrl.update = (req,res) => {
 ctrl.remove = (req, res) => {
    const id = req.params.user_id;
    const body = req.body;
-   User.findOne( {_id: id}, (err,user) => {
+   modelUser.findOne( {_id: id}, (err,user) => {
       if(err) {console.log(err)}
       else
          if(!user) {console.log('user not found')}
          else {
-            user.Status = 'INACTIVE';
+            user.status = 'INACTIVE';
       
-            save((err) => {
+            user.save((err) => {
                if(err) {console.log(err)}
                res.send({
                   success: true
-               })
+               });
             });
          }
    });
