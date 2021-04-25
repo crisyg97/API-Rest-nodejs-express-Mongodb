@@ -2,6 +2,7 @@ const express = require('express');
 const path = require("path");
 const morgan = require('morgan');
 const app = express();
+const dotenv = require('dotenv')
 
 //port
 app.set('port', process.env.PORT || 3000);
@@ -31,12 +32,10 @@ app.use('/car',car);
 
 //connetion mongodb
 const mongodb_conn_module = require('./mongodbConnect');
-var db = mongodb_conn_module.connect()
-    .then(() => {
-        app.listen(app.get('port'), () => {
-            console.log('server on port', app.get('port'));
-        });
-    });   
+var db = mongodb_conn_module.connect();
+app.listen(app.get('port'), () => {
+    console.log('server on port', app.get('port')); 
+});
 
 
 

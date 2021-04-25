@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
-const uri = "mongodb://localhost:27017";
-const databaseName = "/api_rest";
+const dotenv = require('dotenv').config();
+const uri = process.env.URL_MONGO;
+//const uri = "mongodb://localhost:27017";
+
 
 module.exports.connect = function() {
-  mongoose.connect(uri + databaseName , {useNewUrlParser: true, useUnifiedTopology: true});
+  mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
   var db = mongoose.connection;
   db.once("open", function(callback){
     console.log("Connection Succeeded");
