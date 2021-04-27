@@ -2,14 +2,17 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 var userSchema = new Schema ({
-    firstName: String,
-    lastName: String,
-    dni: String,
-    mail: String,
+    username: {type: String, required: true},
+    password: {type: String, required: true},
+    firstName: {type: String, required: true},
+    lastName: {type: String, required: true},
+    dni: {type: String, required: true},
+    mail: {type: String, required: true},
     cars: [{
         carId: {type: Schema.Types.ObjectId, ref: 'car'}
     }],
-    status: {type: String, enum: ['ACTIVE','INACTIVE'], default: 'ACTIVE'}
+    hierarchy: {type: String, required: true},
+    status: {type: String, enum: ['ACTIVE','INACTIVE'], default: 'ACTIVE', required: true}
 });
 
 module.exports = mongoose.model('user', userSchema);

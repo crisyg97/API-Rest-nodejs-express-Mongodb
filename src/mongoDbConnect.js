@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 const uri = process.env.URL_MONGO;
-//const uri = "mongodb://localhost:27017";
-
 
 module.exports.connect = function() {
   mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});

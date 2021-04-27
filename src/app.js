@@ -1,8 +1,11 @@
 const express = require('express');
-const path = require("path");
-const morgan = require('morgan');
+      path = require("path");
+      morgan = require('morgan');
+      dotenv = require('dotenv').config();
+      jwt = require('jsonwebtoken');
+
 const app = express();
-const dotenv = require('dotenv')
+app.set('key', KEY);
 
 //port
 app.set('port', process.env.PORT || 3000);
