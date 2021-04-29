@@ -5,7 +5,7 @@ const express = require('express');
       jwt = require('jsonwebtoken');
 
 const app = express();
-app.set('key', KEY);
+app.set('key', process.env.KEY);
 
 //port
 app.set('port', process.env.PORT || 3000);
@@ -26,11 +26,13 @@ app.use(express.json());
 //routes
 const user = require('./routes/user');
 const car = require('./routes/car');
+const auth = require('./routes/auth');
 /*app.use('/', (req,res) => {
     res.json('API-Rest');
 });*/
-app.use('/user',user);
-app.use('/car',car);
+app.use('/api/user',user);
+app.use('/api/car',car);
+app.use('/api/auth', auth);
 
 
 //connetion mongodb

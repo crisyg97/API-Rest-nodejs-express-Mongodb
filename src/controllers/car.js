@@ -1,8 +1,8 @@
 const modelCar = require('../models/car');
 const ctrl = {};
 
-ctrl.index = (req, res) => {
-    modelCar.find((err,car) => {
+ctrl.index = async (req, res) => {
+    await modelCar.find((err,car) => {
         if(err) {console.log(err)}
         res.send({
             car : car
@@ -10,7 +10,7 @@ ctrl.index = (req, res) => {
     })
 }
 
-ctrl.create = (req, res, next) => {
+ctrl.create = async (req, res, next) => {
     console.log(req.body);
     const body = req.body;
     const car = new modelCar({
@@ -23,7 +23,7 @@ ctrl.create = (req, res, next) => {
         year: body.year,
         status: 'ACTIVE'
     });
-    car.save((err) => {
+    await car.save((err) => {
         if(err) {console.log(err)}
         res.send({
             success: true
@@ -31,11 +31,11 @@ ctrl.create = (req, res, next) => {
     });
 }
 
-ctrl.update = (req, res) => {
+ctrl.update = async (req, res) => {
     const id = req.params.car_id;
     const body = req.body;
     console.log(body);
-    modelCar.findOne( {_id: id}, (err, car) => {
+    await modelCar.findOne( {_id: id}, async (err, car) => {
         if(err) {console.log(err)}
         else
             if(!car) {console.log('car not found')}
@@ -49,7 +49,7 @@ ctrl.update = (req, res) => {
                 car.year = body.year,
                 car.status = body.status
             }
-            car.save((err) => {
+            await car.save((err) => {
                 if(err) {console.log(err)}
                 res.send({
                     success: true
@@ -58,7 +58,7 @@ ctrl.update = (req, res) => {
     })
 }
 
-ctrl.remove = (req, res) => {
+ctrl.remove = async (req, res) => {
     const id = req.params.car_id;
     const body = req.body;
     modelCar.findOne( {_id: id}, (err,car) => {

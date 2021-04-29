@@ -1,14 +1,17 @@
 GET http://localhost:3000/user
 ###
-POST http://localhost:3000/user/add HTTP/1.1
+POST http://localhost:3000/api/auth/signup HTTP/1.1
 content-type: application/json
 
 {
+    "username": "crisy",
+    "password": "1234",
     "firstName": "yoel",
     "lastName" : "cristian",
     "dni": "40861016",
     "mail": "cristianyoel@gmail.com",
-    "cars": []
+    "cars": [],
+    "roles": []
 }
 ###
 PUT http://localhost:3000/user/60819787f4a8501334fc1d47/update HTTP/1.1
