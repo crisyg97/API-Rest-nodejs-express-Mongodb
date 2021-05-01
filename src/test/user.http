@@ -11,7 +11,9 @@ content-type: application/json
     "dni": "40861016",
     "mail": "cristianyoel@gmail.com",
     "cars": [],
-    "roles": []
+    "roles": [
+        "admin"
+    ]
 }
 ###
 PUT http://localhost:3000/user/60819787f4a8501334fc1d47/update HTTP/1.1

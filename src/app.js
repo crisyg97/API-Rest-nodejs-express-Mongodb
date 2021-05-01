@@ -3,8 +3,13 @@ const express = require('express');
       morgan = require('morgan');
       dotenv = require('dotenv').config();
       jwt = require('jsonwebtoken');
+const roles = require('./lib/initialSetup');
 
 const app = express();
+//role creation
+console.log(roles);
+roles.createRoles;
+
 app.set('key', process.env.KEY);
 
 //port
@@ -21,19 +26,15 @@ app.use((req, res, next) => {
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-//app.use(express.static(path.join(__dirname, "public")));
 
 //routes
 const user = require('./routes/user');
 const car = require('./routes/car');
 const auth = require('./routes/auth');
-/*app.use('/', (req,res) => {
-    res.json('API-Rest');
-});*/
+
 app.use('/api/user',user);
 app.use('/api/car',car);
 app.use('/api/auth', auth);
-
 
 //connetion mongodb
 const mongodb_conn_module = require('./mongodbConnect');
