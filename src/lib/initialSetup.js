@@ -1,25 +1,16 @@
 const modelRole = require('../models/role')
-ctrl = {};
+const promise = require('promise');
+const ctrl = {};
 
-ctrl.createRoles = async () => {
-    console.log('funciona');
+ctrl.createRoles =  async () => {
+//module.exports = function createRoles () {
     try{
+        //console.log('funciona');
         //check for existing roles
-        const count = await modelRole.estimatedDocumentCount();
+        const count =  await modelRole.estimatedDocumentCount();
+        console.log(count);
         if(count > 0) return;
-        /*const user = new role({
-            name: "user"
-        });
-        const admin = new role({
-            name: "admin"
-        });
-        const moderator = new role({
-            name: "moderator"
-        });
-        user.save();
-        admin.save();
-        moderator.save();*/
-        const values = await Promises.all ([
+        const values =  Promise.all ([
             new modelRole({name: "user"}).save(),
             new modelRole({name: "admin"}).save(),
             new modelRole({name: "moderator"}).save()
@@ -28,6 +19,18 @@ ctrl.createRoles = async () => {
     }catch(err){
         console.log(err);
     }
-}
-console.log(ctrl);
-module.export = ctrl;
+    /*const user = new role({
+        name: "user"
+    });
+    const admin = new role({
+        name: "admin"
+    });
+    const moderator = new role({
+        name: "moderator"
+    });
+    user.save();
+    admin.save();
+    moderator.save();*/ 
+};
+
+module.exports = ctrl;

@@ -1,5 +1,8 @@
 GET http://localhost:3000/user
 ###
+//creation roles
+GET http://localhost:3000/api/roles
+###
 POST http://localhost:3000/api/auth/signup HTTP/1.1
 content-type: application/json
 
@@ -9,7 +12,7 @@ content-type: application/json
     "firstName": "yoel",
     "lastName" : "cristian",
     "dni": "40861016",
-    "mail": "cristianyoel@gmail.com",
+    "email": "cristianyoel@gmail.com",
     "cars": [],
     "roles": [
         "admin"

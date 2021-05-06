@@ -18,7 +18,7 @@ ctrl.create =  (req, res) => {
       firstName: body.firstName,
       lastName: body.lastName,
       dni: body.dni,
-      mail: body.mail,
+      email: body.mail,
       cars: body.cars,
       status: 'ACTIVE'
    });
@@ -41,7 +41,7 @@ ctrl.update = (req,res) => {
             user.firstName = body.firstName,
             user.lastName = body.lastName,
             user.dni = body.dni,
-            user.mail = body.mail,
+            user.email = body.mail,
             user.cars = body.cars,
             user.Status = body.Status
          }

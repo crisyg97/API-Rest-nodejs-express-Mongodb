@@ -3,12 +3,9 @@ const express = require('express');
       morgan = require('morgan');
       dotenv = require('dotenv').config();
       jwt = require('jsonwebtoken');
-const roles = require('./lib/initialSetup');
+
 
 const app = express();
-//role creation
-console.log(roles);
-roles.createRoles;
 
 app.set('key', process.env.KEY);
 
@@ -39,6 +36,11 @@ app.use('/api/auth', auth);
 //connetion mongodb
 const mongodb_conn_module = require('./mongodbConnect');
 var db = mongodb_conn_module.connect();
+
+//creation roles
+const roles = require('./lib/initialSetup');
+app.use('/api/roles', roles.createRoles);
+
 app.listen(app.get('port'), () => {
     console.log('server on port', app.get('port')); 
 });

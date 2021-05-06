@@ -8,7 +8,7 @@ var userSchema = new Schema ({
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     dni: {type: String, required: true},
-    mail: {type: String, required: true},
+    email: {type: String, required: true},
     cars: [{
         carId: {type: Schema.Types.ObjectId, ref: 'car'}
     }],
