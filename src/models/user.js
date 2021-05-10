@@ -28,7 +28,7 @@ userSchema.statics.encryptPassword = async (password) => {
 }
 //receivedPassword = password entered by user
 userSchema.statics.comparePassword = async (password, receivedPassword) => {
-    await bcrypt.compare(password, receivedPassword);
+    return await bcrypt.compare(password, receivedPassword);
 }
 
 module.exports = mongoose.model('user', userSchema);

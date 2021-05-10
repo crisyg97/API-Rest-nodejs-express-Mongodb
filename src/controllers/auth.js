@@ -1,5 +1,6 @@
 const modelUser = require('../models/user');
 const modelRole = require('../models/role');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv').config();
 const ctrl = {};
@@ -12,10 +13,10 @@ ctrl.signup = async (req, res) => {
     const newUser = new modelUser({
         username: body.username,
         password: await modelUser.encryptPassword(body.password), //save the encrypted password
-        firstname: body.firstname,
+        firstName: body.firstName,
         lastName: body.lastName,
         dni: body.dni,
-        mail: body.mail,
+        email: body.email,
         cars: body.cars,
         roles: body.roles,
         status: 'ACTIVE'
@@ -41,11 +42,21 @@ ctrl.signup = async (req, res) => {
 
 ctrl.signin = async (req, res) => {
     const body = req.body;
-    const userFound = await modelUser.findOne({email: body.email});
-    
+    const userFound = await modelUser.findOne({email: body.email}).populate("roles");
+    //console.log(userFound);
     if(!userFound){
         return res.status(400).json({message: 'user not found'});
     }
+    //validation password
+    const comparationResult = await modelUser.comparePassword(body.password, userFound.password);
+    console.log(comparationResult);
+    if(!comparationResult){
+        return res.status(400).json({message: "invalid password"});
+    }
+
+    const token = await jwt.sign({id: userFound._id }, process.env.SECRET, {
+        expiresIn: 3600 //seconds, 1 hour
+    });
     res.json({token: ''});
 };
 
