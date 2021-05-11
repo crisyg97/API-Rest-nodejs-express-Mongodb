@@ -3,7 +3,15 @@ const modelRole = require('../models/role');
 const modelUser = require('../models/user');
 
 index.checkDuplicatedUserOrEmail = async (req, res, next) => {
-    const userFound = await modelUser.findOne({_id: req.body.id} )
+    const usernameFound = await modelUser.findOne({username: req.body.username});
+    if(usernameFound){
+        return res.status(400).json({message: 'user already exists'});
+    }
+    const emailFound = await modelUser.findOne({email: req.body.email});
+    if(emailFound){
+        return res.status(400).json({message: 'email already exists'});
+    }
+    next();
 }
 
 //not Create roles nonexistent
