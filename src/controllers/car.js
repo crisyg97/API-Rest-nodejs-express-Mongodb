@@ -10,6 +10,15 @@ ctrl.index = async (req, res) => {
     })
 }
 
+ctrl.getById = async (req, res) => {
+    const id = req.params.car_id;
+    await modelCar.findById({_id: id}, (err,car) => {
+        if(err) {console.log(err)}
+        res.send({
+            car : car
+        })       
+    })
+}
 ctrl.create = async (req, res) => {
     console.log(req.body);
     const body = req.body;
@@ -61,7 +70,7 @@ ctrl.update = async (req, res) => {
 ctrl.remove = async (req, res) => {
     const id = req.params.car_id;
     const body = req.body;
-    modelCar.findOne( {_id: id}, (err,car) => {
+    modelCar.findOne( {_id: id}, async (err,car) => {
         if(err) {console.log(err)}
         else
            if(!car) {console.log('car not found')}

@@ -11,15 +11,28 @@ ctrl.index = (req, res) => {
    }).populate('car');
 };
 
+ctrl.getById = async (req, res) => {
+   await modelUser.findById({_id:id}, (err, userDb) => {
+      if (err) {console.log(err)}
+      console.log(userDb);
+      res.send({
+         user: userDb
+      });
+   })
+}
+
 ctrl.create =  (req, res) => {
    const body = req.body;
    console.log(body);
    const user = new modelUser({
+      username: body.username,
+      password: body.password,
       firstName: body.firstName,
       lastName: body.lastName,
       dni: body.dni,
       email: body.mail,
       cars: body.cars,
+      roles: body.roles,
       status: 'ACTIVE'
    });
    user.save((err) => {
@@ -38,6 +51,8 @@ ctrl.update = (req,res) => {
       else
          if(!user) {console.log('user not found')}
          else {
+            user.username = body.username,
+            user.password = body.password,
             user.firstName = body.firstName,
             user.lastName = body.lastName,
             user.dni = body.dni,
