@@ -1,4 +1,4 @@
-GET http://localhost:3000/user
+GET http://localhost:3000/api/user
 ###
 //creation roles
 GET http://localhost:3000/api/roles
@@ -27,7 +27,7 @@ content-type: application/json
     "password": "1234"
 }
 ###
-PUT http://localhost:3000/user/60819787f4a8501334fc1d47/update HTTP/1.1
+PUT http://localhost:3000/api/user/60819787f4a8501334fc1d47/update HTTP/1.1
 content-type: application/json
 
 {
@@ -52,7 +52,7 @@ content-type: application/json
 }
 
 ###
-DELETE http://localhost:3000/user/60819787f4a8501334fc1d47/delete HTTP/1.1
+DELETE http://localhost:3000/api/user/60819787f4a8501334fc1d47/delete HTTP/1.1
 content-type: application/json
 
 {

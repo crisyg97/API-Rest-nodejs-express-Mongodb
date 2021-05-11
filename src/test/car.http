@@ -1,6 +1,6 @@
-GET http://localhost:3000/car
+GET http://localhost:3000/api/car
 ###
-POST http://localhost:3000/car/add HTTP/1.1
+POST http://localhost:3000/api/car/add HTTP/1.1
 content-type: application/json
 
 {
@@ -9,12 +9,12 @@ content-type: application/json
     "fuel": "nafta",
     "category": "4x4",
     "transmission": "Auto",
-    "origin": "EE.UU",
+    "origin":25 "EE.UU",
     "year": "2020"
 }
 
 ###
-PUT http://localhost:3000/car/608348c62189a30a8c75a6ec/update HTTP/1.1
+PUT http://localhost:3000/api/car/608348c62189a30a8c75a6ec/update HTTP/1.1
 content-type: application/json
 
 {
@@ -28,7 +28,7 @@ content-type: application/json
 }
 ###
 
-DELETE http://localhost:3000/car/608348c62189a30a8c75a6ec/delete HTTP/1.1
+DELETE http://localhost:3000/api/car/608348c62189a30a8c75a6ec/delete HTTP/1.1
 content-type: application/json
 
 {

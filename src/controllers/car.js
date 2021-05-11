@@ -10,7 +10,7 @@ ctrl.index = async (req, res) => {
     })
 }
 
-ctrl.create = async (req, res, next) => {
+ctrl.create = async (req, res) => {
     console.log(req.body);
     const body = req.body;
     const car = new modelCar({
@@ -23,7 +23,7 @@ ctrl.create = async (req, res, next) => {
         year: body.year,
         status: 'ACTIVE'
     });
-    await car.save((err) => {
+    await modelCar.save((err) => {
         if(err) {console.log(err)}
         res.send({
             success: true

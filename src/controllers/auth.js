@@ -45,7 +45,7 @@ ctrl.signin = async (req, res) => {
     const userFound = await modelUser.findOne({email: body.email}).populate("roles");
     //console.log(userFound);
     if(!userFound){
-        return res.status(400).json({message: 'user not found'});
+        return res.status(404).json({message: 'user not found'});
     }
     //validation password
     const comparationResult = await modelUser.comparePassword(body.password, userFound.password);
