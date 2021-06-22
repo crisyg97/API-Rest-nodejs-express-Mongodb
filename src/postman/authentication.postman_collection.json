@@ -1,0 +1,146 @@
+{
+	"variables": [],
+	"info": {
+		"name": "authentication",
+		"_postman_id": "875e6d98-71c9-1451-ff38-93376aa8213a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/api/auth/signin",
+			"request": {
+				"url": "http://localhost:3000/api/auth/signin",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"cristianyoel@gmail.com\",\r\n    \"password\": \"1234\"\r\n}"
+				},
+				"description": "signin, get token"
+			},
+			"response": [
+				{
+					"id": "e39aea92-f2d6-4bb0-a06e-af0f150c3f03",
+					"name": "http://localhost:3000/api/auth/signin",
+					"originalRequest": {
+						"url": "http://localhost:3000/api/auth/signin",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"cristianyoel@gmail.com\",\r\n    \"password\": \"1234\"\r\n}"
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "access-control-allow-headers",
+							"key": "access-control-allow-headers",
+							"value": "Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method",
+							"description": "Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request."
+						},
+						{
+							"name": "access-control-allow-methods",
+							"key": "access-control-allow-methods",
+							"value": "GET, POST, OPTIONS, PUT, DELETE",
+							"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "*",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "allow",
+							"key": "allow",
+							"value": "GET, POST, OPTIONS, PUT, DELETE",
+							"description": "Valid actions for a specified resource. To be used for a 405 Method not allowed"
+						},
+						{
+							"name": "connection",
+							"key": "connection",
+							"value": "keep-alive",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "183",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Thu, 20 May 2021 04:22:56 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "etag",
+							"key": "etag",
+							"value": "W/\"b7-aGENEtzFJRbuqI/5fycpWkq4TrM\"",
+							"description": "An identifier for a specific version of a resource, often a message digest"
+						},
+						{
+							"name": "keep-alive",
+							"key": "keep-alive",
+							"value": "timeout=5",
+							"description": "Custom header"
+						},
+						{
+							"name": "x-powered-by",
+							"key": "x-powered-by",
+							"value": "Express",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookie": [],
+					"responseTime": 1547,
+					"body": "{\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOTM3NjJjNjA1Yzk0MjUxYzg3YzYxYiIsImlhdCI6MTYyMTQ4NDU3NiwiZXhwIjoxNjIxNDg4MTc2fQ.rjsAvenS7mzz3ZwV-PSEQfxJ3NjZqsmBZdDBDpL6dGQ\"}"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:3000/api/auth/signup",
+			"request": {
+				"url": "http://localhost:3000/api/auth/signup",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"jesus\",\r\n    \"password\": \"jesus12\",\r\n    \"firstName\": \"yisus\",\r\n    \"lastName\" : \"cristo\",\r\n    \"dni\": \"00000001\",\r\n    \"email\": \"yisus@gmail.com\",\r\n    \"cars\": [],\r\n    \"roles\": [\r\n        \"user\"\r\n    ]\r\n}"
+				},
+				"description": "signup new user"
+			},
+			"response": []
+		}
+	]
+}
